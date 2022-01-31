@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WilmerFlorez.Database\WilmerFlorez.Database.csproj" />
+    <ProjectReference Include="..\WilmerFlorez.Entities\WilmerFlorez.Entities.csproj" />
+    <ProjectReference Include="..\WilmerFlorez.Models\WilmerFlorez.Models.csproj" />
+  </ItemGroup>
+
+</Project>

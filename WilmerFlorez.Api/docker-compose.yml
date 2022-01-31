@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2017-latest 
+    environment:
+        SA_PASSWORD: "Pass@word"
+        ACCEPT_EULA: "Y"
+    ports:
+        - "5101:1433"
+    volumes:
+      - data:/var/opt/mssql/data1
+
+
+  wilmerflorez.api:
+    image: ${DOCKER_REGISTRY-}wilmerflorezapi
+    environment:
+        ASPNETCORE_ENVIRONMENT: "Development"
+        SQL_SERVER_CONNECTION: "Server=sqldata; Database=WilmerFlorezDb; User=sa; Password=Pass@word;"
+        RABBITMQ: "rabbitmq"
+    build:
+      context: .
+      dockerfile: WilmerFlorez.Api\Dockerfile
+    ports:
+       - "5200:80"
+    depends_on:
+      - sqldata
+
+volumes:
+    data:
